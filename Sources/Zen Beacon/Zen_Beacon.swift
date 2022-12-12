@@ -79,11 +79,11 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
                 if status == .notDetermined
                 {
                     print("joy")
-                    self.Location_Manager.requestWhenInUseAuthorization()
+                    self.Location_Manager.requestAlwaysAuthorization()
                 }
                 else if status == .denied || status == .restricted
                 {
-                    self.Location_Manager.requestWhenInUseAuthorization()
+                    self.Location_Manager.requestAlwaysAuthorization()
                 }
                 else if status == .authorizedAlways || status == .authorizedWhenInUse
                 {
@@ -145,8 +145,8 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
         
         
 //        Str_Beacon_UUID = "bf513d02-5ce1-411f-81f2-96d270f1cb2e"
-//        
-//        
+//
+//
 //        if #available(iOS 13.0, *)
 //        {
 //            let constraint = CLBeaconIdentityConstraint(uuid: uuid, major: 1, minor: 1)
@@ -160,7 +160,7 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
 //        else
 //        {
 //            // Fallback on earlier versions
-//            
+//
 //            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: Str_Beacon_Identifier)
 //            beaconRegion.notifyOnEntry = true;
 //            beaconRegion.notifyOnExit = true;
@@ -168,7 +168,7 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
 //            Location_Manager.startMonitoring(for: beaconRegion)
 //            Location_Manager.startRangingBeacons(in: beaconRegion)
 //        }
-//        
+//
         
         
     }
