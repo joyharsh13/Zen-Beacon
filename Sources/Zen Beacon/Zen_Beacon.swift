@@ -338,6 +338,18 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
     {
         
+//        if let userInfo = response.notification.request.content.userInfo
+//        {
+//            print(userInfo["url"])
+//
+//        }
+        
+        
+        if let userInfo = response.notification.request.content.userInfo as? [String: AnyObject]{
+            // your logic here!
+            
+            print(userInfo)
+        }
     }
     
     
