@@ -156,31 +156,31 @@ open class ZenBeaconScanner: NSObject
         
         
         
-        
-        Str_Beacon_UUID = "bf513d02-5ce1-411f-81f2-96d270f1cb2e"
-
-
-        if #available(iOS 13.0, *)
-        {
-            let constraint = CLBeaconIdentityConstraint(uuid: uuid, major: 1, minor: 1)
-            let region = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: Str_Beacon_Identifier)
-            region.notifyOnEntry = true
-            region.notifyOnExit = true
-            region.notifyEntryStateOnDisplay = true
-            Location_Manager.startMonitoring(for: region)
-            Location_Manager.startRangingBeacons(satisfying: constraint)
-        }
-        else
-        {
-            // Fallback on earlier versions
-
-            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: Str_Beacon_Identifier)
-            beaconRegion.notifyOnEntry = true;
-            beaconRegion.notifyOnExit = true;
-            beaconRegion.notifyEntryStateOnDisplay = true;
-            Location_Manager.startMonitoring(for: beaconRegion)
-            Location_Manager.startRangingBeacons(in: beaconRegion)
-        }
+//
+//        Str_Beacon_UUID = "bf513d02-5ce1-411f-81f2-96d270f1cb2e"
+//
+//
+//        if #available(iOS 13.0, *)
+//        {
+//            let constraint = CLBeaconIdentityConstraint(uuid: uuid, major: 1, minor: 1)
+//            let region = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: Str_Beacon_Identifier)
+//            region.notifyOnEntry = true
+//            region.notifyOnExit = true
+//            region.notifyEntryStateOnDisplay = true
+//            Location_Manager.startMonitoring(for: region)
+//            Location_Manager.startRangingBeacons(satisfying: constraint)
+//        }
+//        else
+//        {
+//            // Fallback on earlier versions
+//
+//            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: Str_Beacon_Identifier)
+//            beaconRegion.notifyOnEntry = true;
+//            beaconRegion.notifyOnExit = true;
+//            beaconRegion.notifyEntryStateOnDisplay = true;
+//            Location_Manager.startMonitoring(for: beaconRegion)
+//            Location_Manager.startRangingBeacons(in: beaconRegion)
+//        }
 
         
     }
