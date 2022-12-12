@@ -110,7 +110,7 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
     {
         
         var Str_Beacon_UUID = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
-        var Str_Beacon_Identifier = "ZenBeacon"
+        let Str_Beacon_Identifier = "ZenBeacon"
 
         
         let uuid = UUID(uuidString: Str_Beacon_UUID)!
@@ -144,32 +144,31 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
         
         
         
-        Str_Beacon_UUID = "bf513d02-5ce1-411f-81f2-96d270f1cb2e"
-        Str_Beacon_Identifier = "ZenBeacon2"
-        
-        
-        if #available(iOS 13.0, *)
-        {
-            let constraint1 = CLBeaconIdentityConstraint(uuid: uuid, major: 100, minor: 200)
-            let region1 = CLBeaconRegion(beaconIdentityConstraint: constraint1, identifier: Str_Beacon_Identifier)
-            region1.notifyOnEntry = true
-            region1.notifyOnExit = true
-            region1.notifyEntryStateOnDisplay = true
-            Location_Manager.startMonitoring(for: region1)
-            Location_Manager.startRangingBeacons(satisfying: constraint1)
-        }
-        else
-        {
-            // Fallback on earlier versions
-            
-            let beaconRegion1 = CLBeaconRegion(proximityUUID: uuid, identifier: Str_Beacon_Identifier)
-            beaconRegion1.notifyOnEntry = true;
-            beaconRegion1.notifyOnExit = true;
-            beaconRegion1.notifyEntryStateOnDisplay = true;
-            Location_Manager.startMonitoring(for: beaconRegion1)
-            Location_Manager.startRangingBeacons(in: beaconRegion1)
-        }
-        
+//        Str_Beacon_UUID = "bf513d02-5ce1-411f-81f2-96d270f1cb2e"
+//        
+//        
+//        if #available(iOS 13.0, *)
+//        {
+//            let constraint = CLBeaconIdentityConstraint(uuid: uuid, major: 1, minor: 1)
+//            let region = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: Str_Beacon_Identifier)
+//            region.notifyOnEntry = true
+//            region.notifyOnExit = true
+//            region.notifyEntryStateOnDisplay = true
+//            Location_Manager.startMonitoring(for: region)
+//            Location_Manager.startRangingBeacons(satisfying: constraint)
+//        }
+//        else
+//        {
+//            // Fallback on earlier versions
+//            
+//            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: Str_Beacon_Identifier)
+//            beaconRegion.notifyOnEntry = true;
+//            beaconRegion.notifyOnExit = true;
+//            beaconRegion.notifyEntryStateOnDisplay = true;
+//            Location_Manager.startMonitoring(for: beaconRegion)
+//            Location_Manager.startRangingBeacons(in: beaconRegion)
+//        }
+//        
         
         
     }
@@ -295,14 +294,7 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
     {
-//        let userInfo = response.notification.request.content.userInfo
-//        // Print message ID.
-//        if let messageID = userInfo[gcmMessageIDKey] {
-//            print("Message ID: \(messageID)")
-//        }
-//
-//        // Print full message.
-//        print(userInfo)
+        
     }
     
     
