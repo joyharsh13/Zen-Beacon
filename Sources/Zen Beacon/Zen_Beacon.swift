@@ -157,31 +157,31 @@ open class ZenBeaconScanner: NSObject
         
         
         
-//        Str_Beacon_UUID = "bf513d02-5ce1-411f-81f2-96d270f1cb2e"
-//
-//
-//        if #available(iOS 13.0, *)
-//        {
-//            let constraint = CLBeaconIdentityConstraint(uuid: uuid, major: 1, minor: 1)
-//            let region = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: Str_Beacon_Identifier)
-//            region.notifyOnEntry = true
-//            region.notifyOnExit = true
-//            region.notifyEntryStateOnDisplay = true
-//            Location_Manager.startMonitoring(for: region)
-//            Location_Manager.startRangingBeacons(satisfying: constraint)
-//        }
-//        else
-//        {
-//            // Fallback on earlier versions
-//
-//            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: Str_Beacon_Identifier)
-//            beaconRegion.notifyOnEntry = true;
-//            beaconRegion.notifyOnExit = true;
-//            beaconRegion.notifyEntryStateOnDisplay = true;
-//            Location_Manager.startMonitoring(for: beaconRegion)
-//            Location_Manager.startRangingBeacons(in: beaconRegion)
-//        }
-//
+        Str_Beacon_UUID = "bf513d02-5ce1-411f-81f2-96d270f1cb2e"
+
+
+        if #available(iOS 13.0, *)
+        {
+            let constraint = CLBeaconIdentityConstraint(uuid: uuid, major: 1, minor: 1)
+            let region = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: Str_Beacon_Identifier)
+            region.notifyOnEntry = true
+            region.notifyOnExit = true
+            region.notifyEntryStateOnDisplay = true
+            Location_Manager.startMonitoring(for: region)
+            Location_Manager.startRangingBeacons(satisfying: constraint)
+        }
+        else
+        {
+            // Fallback on earlier versions
+
+            let beaconRegion = CLBeaconRegion(proximityUUID: uuid, identifier: Str_Beacon_Identifier)
+            beaconRegion.notifyOnEntry = true;
+            beaconRegion.notifyOnExit = true;
+            beaconRegion.notifyEntryStateOnDisplay = true;
+            Location_Manager.startMonitoring(for: beaconRegion)
+            Location_Manager.startRangingBeacons(in: beaconRegion)
+        }
+
         
     }
 }
@@ -228,17 +228,34 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
         
         let beaconRegion = region as! CLBeaconRegion
         
+        
+        
+        let state = UIApplication.shared.applicationState
+        
+        
+        var Str_AppState = ""
+
+        if state == .background || state == .inactive
+        {
+            Str_AppState = "background"
+        }
+        else if state == .active {
+            // foreground
+            Str_AppState = "foreground"
+        }
+
+        
         if #available(iOS 13.0, *)
         {
             content.body = String(format: "%@", beaconRegion.uuid as CVarArg)
-            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.uuid as CVarArg)]
+            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.uuid as CVarArg), "AppState":Str_AppState]
 
         }
         else
         {
             // Fallback on earlier versions
             content.body = String(format: "%@", beaconRegion.proximityUUID as CVarArg)
-            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.proximityUUID as CVarArg)]
+            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.proximityUUID as CVarArg), "AppState":Str_AppState]
 
         }
         content.sound = .default
@@ -270,17 +287,30 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
         content.title = "Exit"
         let beaconRegion = region as! CLBeaconRegion
         
+        
+        let state = UIApplication.shared.applicationState
+        var Str_AppState = ""
+        
+        if state == .background || state == .inactive
+        {
+            Str_AppState = "background"
+        }
+        else if state == .active {
+            // foreground
+            Str_AppState = "foreground"
+        }
+        
         if #available(iOS 13.0, *)
         {
             content.body = String(format: "%@", beaconRegion.uuid as CVarArg)
-            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.uuid as CVarArg)]
+            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.uuid as CVarArg), "AppState":Str_AppState]
 
         }
         else
         {
             // Fallback on earlier versions
             content.body = String(format: "%@", beaconRegion.proximityUUID as CVarArg)
-            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.proximityUUID as CVarArg)]
+            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.proximityUUID as CVarArg), "AppState":Str_AppState]
 
         }
 
@@ -337,14 +367,7 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
 
     }
     
-    
-    
-    
-    
-    
-   
-    
-    
+  
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
     {
@@ -360,15 +383,15 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
             // your logic here!
             print(userInfo)
             
-            let content = UNMutableNotificationContent()
-            content.title = "Naresh"
-            content.body = "Harsh"
-            content.sound = .default
-            
-            content.userInfo = ["UUID": "JOY" ]
-
-            let request = UNNotificationRequest(identifier: "identifier", content: content, trigger: nil)
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//            let content = UNMutableNotificationContent()
+//            content.title = "Naresh"
+//            content.body = "Harsh"
+//            content.sound = .default
+//
+//            content.userInfo = ["UUID": "JOY" ]
+//
+//            let request = UNNotificationRequest(identifier: "identifier", content: content, trigger: nil)
+//            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             
             
             delegate?.didClickedOnAdvertise?(AdvertiseData: userInfo as NSDictionary)
