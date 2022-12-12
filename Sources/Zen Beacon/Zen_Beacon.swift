@@ -183,13 +183,7 @@ open class ZenBeaconScanner: NSObject
 //        }
 //
         
-        
     }
-    
-    
-    
-   
-   
 }
 
 
@@ -365,6 +359,18 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
         if let userInfo = response.notification.request.content.userInfo as? [String: AnyObject]{
             // your logic here!
             print(userInfo)
+            
+            let content = UNMutableNotificationContent()
+            content.title = "Naresh"
+            content.body = "Harsh"
+            content.sound = .default
+            
+            content.userInfo = ["UUID": "JOY" ]
+
+            let request = UNNotificationRequest(identifier: "identifier", content: content, trigger: nil)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            
+            
             delegate?.didClickedOnAdvertise?(AdvertiseData: userInfo as NSDictionary)
         }
     }
