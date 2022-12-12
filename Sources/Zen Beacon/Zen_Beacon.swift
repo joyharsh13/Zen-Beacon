@@ -329,6 +329,10 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
             // Fallback on earlier versions
             completionHandler([.badge, .sound])
         }
+        
+        
+        print(notification.request.content.userInfo)
+
     }
     
     
