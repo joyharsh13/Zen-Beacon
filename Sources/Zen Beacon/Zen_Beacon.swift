@@ -179,6 +179,10 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
         let request = UNNotificationRequest(identifier: "SufalamTech", content: content, trigger: nil)
         UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         
+        
+        delegate?.didEnterRegion?(region)
+
+        
 //        NotificationCenter.default.post(name: ViewController.Notification_Beacon_Status_Changed, object: nil, userInfo:["Message": "You Are Back in the Office", "isImportant": true])
         
         print("You Are Back in the Office")
@@ -216,6 +220,9 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
 //        Toast(text: "You Exited from Office").show()
         
         print("You are Out of the Office")
+        
+        delegate?.didExitRegion?(region)
+
         
 //        NotificationCenter.default.post(name: ViewController.Notification_Beacon_Status_Changed, object: nil, userInfo:["Message": "You are Out of the Office", "isImportant": true])
 //
