@@ -110,7 +110,7 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
     {
         
         var Str_Beacon_UUID = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
-        let Str_Beacon_Identifier = "ZenBeacon"
+        var Str_Beacon_Identifier = "ZenBeacon"
 
         
         let uuid = UUID(uuidString: Str_Beacon_UUID)!
@@ -145,6 +145,7 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
         
         
         Str_Beacon_UUID = "bf513d02-5ce1-411f-81f2-96d270f1cb2e"
+        Str_Beacon_Identifier = "ZenBeacon2"
         
         
         if #available(iOS 13.0, *)
