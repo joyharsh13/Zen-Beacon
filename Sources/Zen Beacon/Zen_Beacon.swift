@@ -24,20 +24,10 @@ import MapKit
 }
 
 
-open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManagerDelegate,UNUserNotificationCenterDelegate
+open class ZenBeaconScanner: NSObject
 {
     
-    public func centralManagerDidUpdateState(_ central: CBCentralManager)
-    {
-        if central.state == .poweredOn
-        {
-            print("Bluetooth is connected")
-        }
-        else if central.state == .poweredOff
-        {
-            print("Bluetooth is not Connected.")
-        }
-    }
+    
     
     open var delegate: ZenBeaconDelegate?
     fileprivate let regionIdentifier = "ZenBeaconScanner"
@@ -175,6 +165,28 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
     
     
     
+   
+   
+}
+
+
+extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDelegate,CBCentralManagerDelegate {
+    
+    
+    
+    public func centralManagerDidUpdateState(_ central: CBCentralManager)
+    {
+        if central.state == .poweredOn
+        {
+            print("Bluetooth is connected")
+        }
+        else if central.state == .poweredOff
+        {
+            print("Bluetooth is not Connected.")
+        }
+    }
+    
+    
     public func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion)
     {
         NSLog("didDetermineState: \(state)")
@@ -268,6 +280,19 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
 //        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
+    
+    public func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion)
+    {
+//        print(beacons)
+        
+//        Count = Count + 1
+
+    }
+    
+    
+    
+    
+    
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
         print("GO IN HERE")
@@ -298,200 +323,8 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
     }
     
     
-    public func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion)
-    {
-//        print(beacons)
-        
-//        Count = Count + 1
-        
-//        let content = UNMutableNotificationContent()
-//        content.title = String(format: "%d", Count)
-//        content.body = String(format: "%d", Count)
-//        content.sound = .default
-//        let request = UNNotificationRequest(identifier: "identifier", content: content, trigger: nil)
-//        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-        
-//        NotificationCenter.default.post(name: ViewController.Notification_Beacon_Status_Changed, object: nil, userInfo:["Message": "...", "isImportant": true])
-        
-//        if beacons.count == 0
-//        {
-//            Start_ScanningFor_BEACON()
-//        }
-//        else
-//        {
-//            Location_Manager.stopMonitoring(for: region)
-//            Location_Manager.stopRangingBeacons(in: region)
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 60.0, execute: {
-//                self.Start_ScanningFor_BEACON()
-//            })
-//        }
-    }
+   
 
     
     
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//
-//    open var reportWhenEmpty = false
-//
-//    // Name that is used as the prefix for the region identifier.
-//
-//
-//
-//    /* Dictionary containing the CLBeaconRegions the locationManager is listening to. Each region is assigned to it's UUID String as the key.
-//        The String key in this dictionary is used as the unique key: This means, that each CLBeaconRegion will be unique by it's UUID.
-//        A CLBeaconRegion is unique by it's 'identifier' and not it's UUID. When using this default unique key a dictionary would not be necessary. */
-//    fileprivate var regions = [String: CLBeaconRegion]()
-//
-//    // List of Beacons the monitor should listen on.
-//    fileprivate var beaconsListening: [Beacon]?
-    
-    
-    // MARK: - Init methods
-    
-    /**
-    Init the BeaconMonitor and listen only to the given UUID.
-    - parameter uuid: NSUUID for the region the locationManager is listening to.
-    - returns: Instance
-    */
-//    public init(uuid: UUID) {
-//        super.init()
-//
-//        regions[uuid.uuidString] = self.regionForUUID(uuid)
-//    }
-    
-    /**
-    Init the BeaconMonitor and listen to multiple UUIDs.
-    - parameter uuids: Array of UUIDs for the regions the locationManager should listen to.
-    - returns: Instance
-    */
-//    public init(uuids: [UUID]) {
-//        super.init()
-//
-//        for uuid in uuids {
-//            regions[uuid.uuidString] = self.regionForUUID(uuid)
-//        }
-//    }
-    
-    /**
-    Init the BeaconMonitor and listen only to the given Beacons.
-    The UUID(s) for the regions will be extracted from the Beacon Array. When Beacons with different UUIDs are defined multiple regions will be created.
-    - parameter beacons: Beacon instances the BeaconMonitor is listening for
-    - returns: Instance
-//    */
-//    public init(beacons: [Beacon]) {
-//        super.init()
-//
-//        beaconsListening = beacons
-//
-//        // create a CLBeaconRegion for each different UUID
-//        for uuid in distinctUnionOfUUIDs(beacons) {
-//
-//            regions[uuid.uuidString] = self.regionForUUID(uuid)
-//        }
-//    }
-    
-    /**
-     Init the BeaconMonitor and listen to the given Beacon.
-     From the Beacon values (uuid, major and minor) a concrete CLBeaconRegion will be created.
-     - parameter beacon: Beacon instance the BeaconMonitor is listening for and it will be used to create a concrete CLBeaconRegion.
-     - returns: Instance
-     */
-//    public init(beacon: Beacon) {
-//        super.init()
-//
-//        beaconsListening = [beacon]
-//
-//        regions[beacon.uuid.uuidString] = self.regionForBeacon(beacon)
-//    }
-    
-    
-    // MARK: - Listen/Stop
-    
-    /**
-    Start listening for Beacons.
-    The settings are used from the init mthod.
-    */
-//    open func startListening() {
-//
-//        locationManager = CLLocationManager()
-//        locationManager!.delegate = self
-//
-//        if CLLocationManager.authorizationStatus() == .notDetermined {
-//            locationManager!.requestAlwaysAuthorization()
-//        }
-//    }
-    
-    /**
-    Stop listening for all regions.
-    */
-//    open func stopListening() {
-//        for (uuid, region) in regions {
-//            stopListening(region)
-//            regions[uuid] = nil
-//        }
-//    }
-//
-//    /**
-//    Stop listening only for the region with the given UUID.
-//    - parameter uuid: UUID of the region to stop listening for
-//    */
-//    open func stopListening(_ uuid: UUID) {
-//        if let region = regions[uuid.uuidString] {
-//            stopListening(region)
-//            regions[uuid.uuidString] = nil
-//        }
-//    }
-//
-//
-//    // MARK: - Private Helper
-//
-//    fileprivate func regionForUUID(_ uuid: UUID) -> CLBeaconRegion {
-//        let region = CLBeaconRegion(proximityUUID: uuid, identifier: "\(regionIdentifier)-\(uuid.uuidString)")
-//        region.notifyEntryStateOnDisplay = true
-//        return region
-//    }
-//
-//    fileprivate func regionForBeacon(_ beacon: Beacon) -> CLBeaconRegion {
-//        let region = CLBeaconRegion(proximityUUID: beacon.uuid as UUID,
-//                                    major: CLBeaconMajorValue(beacon.major.int32Value),
-//                                    minor: CLBeaconMinorValue(beacon.minor.int32Value),
-//                                    identifier: "\(regionIdentifier)-\(beacon.uuid.uuidString)")
-//        region.notifyEntryStateOnDisplay = true
-//        return region
-//    }
-//
-//    fileprivate func stopListening(_ region: CLBeaconRegion) {
-//        locationManager?.stopRangingBeacons(in: region)
-//        locationManager?.stopMonitoring(for: region)
-//    }
-//
-//    // http://stackoverflow.com/a/26358719/470964
-//    fileprivate func distinctUnionOfUUIDs(_ beacons: [Beacon]) -> [UUID] {
-//        var dict = [UUID : Bool]()
-//        let filtered = beacons.filter { (element: Beacon) -> Bool in
-//            if dict[element.uuid as UUID] == nil {
-//                dict[element.uuid as UUID] = true
-//                return true
-//            }
-//            return false
-//        }
-//
-//        return filtered.map { ($0.uuid as UUID)}
-//    }
 }
