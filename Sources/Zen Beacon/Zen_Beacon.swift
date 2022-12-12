@@ -149,7 +149,7 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
         
         if #available(iOS 13.0, *)
         {
-            let constraint = CLBeaconIdentityConstraint(uuid: uuid, major: 1, minor: 1)
+            let constraint = CLBeaconIdentityConstraint(uuid: uuid, major: 100, minor: 200)
             let region = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: Str_Beacon_Identifier)
             region.notifyOnEntry = true
             region.notifyOnExit = true
