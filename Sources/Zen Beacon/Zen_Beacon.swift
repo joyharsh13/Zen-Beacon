@@ -352,11 +352,8 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
         
         if let userInfo = response.notification.request.content.userInfo as? [String: AnyObject]{
             // your logic here!
-            
             print(userInfo)
-            
-            
-            delegate?.didClickedOnAdvertise?(AdvertiseData: userInfo)
+            delegate?.didClickedOnAdvertise?(AdvertiseData: userInfo as NSDictionary)
         }
     }
     
