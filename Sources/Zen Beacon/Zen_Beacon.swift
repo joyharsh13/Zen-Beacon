@@ -237,11 +237,15 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
         if #available(iOS 13.0, *)
         {
             content.body = String(format: "%@", beaconRegion.uuid as CVarArg)
+            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.uuid as CVarArg)]
+
         }
         else
         {
             // Fallback on earlier versions
             content.body = String(format: "%@", beaconRegion.proximityUUID as CVarArg)
+            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.proximityUUID as CVarArg)]
+
         }
         content.sound = .default
         let request = UNNotificationRequest(identifier: "SufalamTech", content: content, trigger: nil)
@@ -275,11 +279,15 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
         if #available(iOS 13.0, *)
         {
             content.body = String(format: "%@", beaconRegion.uuid as CVarArg)
+            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.uuid as CVarArg)]
+
         }
         else
         {
             // Fallback on earlier versions
             content.body = String(format: "%@", beaconRegion.proximityUUID as CVarArg)
+            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.proximityUUID as CVarArg)]
+
         }
 
         content.sound = .default
