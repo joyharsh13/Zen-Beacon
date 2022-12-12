@@ -247,7 +247,7 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
         
         if #available(iOS 13.0, *)
         {
-            content.body = String(format: "%@", beaconRegion.uuid as CVarArg)
+            content.body = String(format: "%@", beaconRegion.proximityUUID as CVarArg)
             content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.proximityUUID as CVarArg), "AppState":Str_AppState]
 
         }
@@ -302,7 +302,7 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
         
         if #available(iOS 13.0, *)
         {
-            content.body = String(format: "%@", beaconRegion.uuid as CVarArg)
+            content.body = String(format: "%@", beaconRegion.proximityUUID as CVarArg)
             content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.proximityUUID as CVarArg), "AppState":Str_AppState]
 
         }
