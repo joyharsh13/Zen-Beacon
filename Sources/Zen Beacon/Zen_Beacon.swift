@@ -21,6 +21,11 @@ import MapKit
     
     /// Will be called when the CLLocationManager reports the "did exit region" event.
     @objc optional func didExitRegion(_ region: CLRegion)
+    
+    
+    
+    @objc optional func didClickedOnAdvertise(AdvertiseData: NSDictionary)
+
 }
 
 
@@ -349,6 +354,9 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
             // your logic here!
             
             print(userInfo)
+            
+            
+            delegate?.didClickedOnAdvertise?(AdvertiseData: userInfo)
         }
     }
     
