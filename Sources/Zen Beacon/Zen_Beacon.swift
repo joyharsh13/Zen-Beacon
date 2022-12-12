@@ -283,8 +283,33 @@ open class ZenBeaconScanner: NSObject,CLLocationManagerDelegate, CBCentralManage
         }
     }
     
+    
+    
+    
+    
+    
+   
+    
+    
+    
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void)
     {
+//        let userInfo = response.notification.request.content.userInfo
+//        // Print message ID.
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//            print("Message ID: \(messageID)")
+//        }
+//
+//        // Print full message.
+//        print(userInfo)
+        
+        let storyBoard: UIStoryboard = UIStoryboard(name: "ZenBeacon_Storyboard", bundle: nil)
+        let presentViewController = storyBoard.instantiateViewController(withIdentifier: "Advertise_Page_View") as! Advertise_Page_ViewController
+        
+//        presentViewController.yourDict = userInfo //pass userInfo data to viewController
+//        self.window?.rootViewController = presentViewController
+        presentViewController.present(presentViewController, animated: true, completion: nil)
+
     }
     
     
