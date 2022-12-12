@@ -126,7 +126,7 @@ open class ZenBeaconScanner: NSObject
 //        beaconRegion.notifyEntryStateOnDisplay = true;
 //        Location_Manager.startMonitoring(for: beaconRegion)
 //        Location_Manager.startRangingBeacons(in: beaconRegion)
-//        
+//
         
         
         
@@ -248,7 +248,7 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
         if #available(iOS 13.0, *)
         {
             content.body = String(format: "%@", beaconRegion.uuid as CVarArg)
-            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.uuid as CVarArg), "AppState":Str_AppState]
+            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.proximityUUID as CVarArg), "AppState":Str_AppState]
 
         }
         else
@@ -303,7 +303,7 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
         if #available(iOS 13.0, *)
         {
             content.body = String(format: "%@", beaconRegion.uuid as CVarArg)
-            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.uuid as CVarArg), "AppState":Str_AppState]
+            content.userInfo = ["Beacon_UUID": String(format: "%@", beaconRegion.proximityUUID as CVarArg), "AppState":Str_AppState]
 
         }
         else
