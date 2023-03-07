@@ -44,7 +44,6 @@ Stop scan
 Z_Beacon.stop_Scan()
 ```
 
-
 Extras
 ```swift
 //turn on Notification (false by default)
