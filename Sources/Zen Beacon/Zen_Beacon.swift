@@ -44,18 +44,18 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     open var is_enable_notification = false
    
     
-    open func Start_Scanning()
+    open func Start_Scanning(AppID:String)
     {
-        self.Get_Beacon_List()
+        self.Get_Beacon_List(App_ID:AppID)
     }
     
-    open func Get_Beacon_List()
+    open func Get_Beacon_List(App_ID:String)
     {
         let headers = [
             "content-type": "application/json",
             ]
         
-        let parameters = ["api_unique_key":"f06a8c12f45f80721e5e4777bd8c5df1"] as [String : Any]
+        let parameters = ["api_unique_key":App_ID] as [String : Any]
         
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
         let requestURL = "https://rudder.dev.qntmnet.com/wsmp/beacon-api/get-beacon-list"
