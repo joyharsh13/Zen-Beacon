@@ -62,7 +62,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
         let requestURL = "https://rudder.dev.qntmnet.com/wsmp/beacon-api/get-beacon-list"
         
-        print(requestURL)
+//        print(requestURL)
         
         let request = NSMutableURLRequest(url: NSURL(string:requestURL)! as URL,cachePolicy:.useProtocolCachePolicy,timeoutInterval:45.0)
         request.httpMethod = "POST"
@@ -78,7 +78,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                     {
                         let dataDict : NSDictionary = json as! NSDictionary
                         
-                        print(dataDict)
+//                        print(dataDict)
 
                         if dataDict["responseCode"] as! String == "200"
                         {
