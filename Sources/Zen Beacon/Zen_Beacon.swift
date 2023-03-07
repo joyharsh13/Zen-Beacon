@@ -92,7 +92,11 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                             {
                                 self.Arr_Beacon = []
                                 self.Arr_Beacon = dataDict["responseData"] as! Array<NSDictionary>
-                                self.Ask_For_Location_Permission()
+                                
+                                DispatchQueue.main.async {
+                                    self.Ask_For_Location_Permission()
+
+                                }
                             }
                             else
                             {
@@ -243,13 +247,13 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                 
                 
                 
-//                
+//
 //                for i in 0..<Arr_Beacon.count
 //                {
-//                    
+//
 //                    print(Arr_Beacon[i]["uuid"] as! String)
-//                    
-//                    
+//
+//
 //                    let Beacon_UUID = String(format: "%@", Arr_Beacon[i]["uuid"] as! String)
 //                    let Beacon_Identifier = String(format: "%@", Arr_Beacon[i]["location"] as! String)
 //                    let Beacon_Name = String(format: "%@", Arr_Beacon[i]["name"] as! String)
