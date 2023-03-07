@@ -48,7 +48,11 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     open func Start_Scanning(AppID:String)
     {
         Str_APP_ID = AppID
-        self.Get_Beacon_List(App_ID:Str_APP_ID)
+//        self.Get_Beacon_List(App_ID:Str_APP_ID)
+        
+        
+        self.Ask_For_Location_Permission()
+
     }
     
     open func Get_Beacon_List(App_ID:String)
