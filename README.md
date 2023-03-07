@@ -1,3 +1,4 @@
 # Zen Beacon
 
-A description of this package.
+SDK created to scan Beacons
+
