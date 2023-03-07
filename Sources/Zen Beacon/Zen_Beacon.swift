@@ -41,7 +41,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     
     var Arr_Beacon: Array<AnyObject> = []
     
-    var is_enable_notification = false
+    open var is_enable_notification = false
    
     
     open func Start_Scanning()
