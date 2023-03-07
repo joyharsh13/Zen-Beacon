@@ -138,19 +138,16 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
         {
             UIAlertAction in
-            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
-
+//            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
         }
 
         Alert.addAction(okAction)
-        
         
         if let topVC = self.getTopViewController()
         {
             DispatchQueue.main.async {
                 topVC.navigationController!.present(Alert, animated: true, completion: nil)
             }
-
         }
     }
     
@@ -297,15 +294,9 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             Location_Manager.startMonitoring(for: beaconRegion)
             Location_Manager.startRangingBeacons(in: beaconRegion)
             Location_Manager.startUpdatingLocation()
-
         }
-        
         print(uuidApple)
-
     }
-    
-    
-    
     
     public func centralManagerDidUpdateState(_ central: CBCentralManager)
     {
@@ -338,44 +329,41 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             
             let Str_Beacon_UUID = String(format: "%@", beaconRegion.proximityUUID as CVarArg)
            
-            let state: UIApplication.State = UIApplication.shared.applicationState
-            
-            
+//            let state: UIApplication.State = UIApplication.shared.applicationState
             
             self.Get_Beacon_Advertise_Data(Beacon_UUID: String(format: "%@", beaconRegion.proximityUUID as CVarArg), is_from_Notification: false)
 
-            
-            if state != .active
-            {
-                if is_enable_notification
-                {
-                    let content = UNMutableNotificationContent()
-                    content.title = "New Alert from Quantam Workflow"
-
-                    let Beacon_Title = "Click here to view more details"
-
-                    if #available(iOS 13.0, *)
-                    {
-                        content.body = Beacon_Title
-                        content.sound = .default
-                        content.userInfo = ["Beacon_UUID": Str_Beacon_UUID]
-                    }
-                    else
-                    {
-                        // Fallback on earlier versions
-                        content.body = Beacon_Title
-                        content.sound = .default
-                        content.userInfo = ["Beacon_UUID": Str_Beacon_UUID]
-                    }
-
-                    let request = UNNotificationRequest(identifier: Str_Beacon_UUID, content: content, trigger: nil)
-                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-                }
-              
-            }
-            else
-            {
-            }
+//            if state != .active
+//            {
+//                if is_enable_notification
+//                {
+//                    let content = UNMutableNotificationContent()
+//                    content.title = "New Alert from Quantam Workflow"
+//
+//                    let Beacon_Title = "Click here to view more details"
+//
+//                    if #available(iOS 13.0, *)
+//                    {
+//                        content.body = Beacon_Title
+//                        content.sound = .default
+//                        content.userInfo = ["Beacon_UUID": Str_Beacon_UUID]
+//                    }
+//                    else
+//                    {
+//                        // Fallback on earlier versions
+//                        content.body = Beacon_Title
+//                        content.sound = .default
+//                        content.userInfo = ["Beacon_UUID": Str_Beacon_UUID]
+//                    }
+//
+//                    let request = UNNotificationRequest(identifier: Str_Beacon_UUID, content: content, trigger: nil)
+//                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//                }
+//
+//            }
+//            else
+//            {
+//            }
         }
         if state == .outside
         {
@@ -522,57 +510,53 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     }
     
     
-    
     public func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion)
     {
         let beaconRegion = region as! CLBeaconRegion
         
         let Str_Beacon_UUID = String(format: "%@", beaconRegion.proximityUUID as CVarArg)
         
-        let state: UIApplication.State = UIApplication.shared.applicationState
-        
+//        let state: UIApplication.State = UIApplication.shared.applicationState
         
         self.Get_Beacon_Advertise_Data(Beacon_UUID: Str_Beacon_UUID, is_from_Notification: false)
-
        
-        if state != .active
-        {
-            
-            
-            if is_enable_notification
-            {
-                let content = UNMutableNotificationContent()
-                content.title = "New Alert from Quantam Workflow"
-
-                let Beacon_Title = "Click here to view more details"
-
-                if #available(iOS 13.0, *)
-                {
-                    content.body = Beacon_Title
-                    content.sound = .default
-                    content.userInfo = ["Beacon_UUID": Str_Beacon_UUID]
-                }
-                else
-                {
-                    // Fallback on earlier versions
-                    content.body = Beacon_Title
-                    content.sound = .default
-                    content.userInfo = ["Beacon_UUID": Str_Beacon_UUID]
-                }
-
-                let request = UNNotificationRequest(identifier: Str_Beacon_UUID, content: content, trigger: nil)
-                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
-            }
-        }
+//        if state != .active
+//        {
+//            if is_enable_notification
+//            {
+//                let content = UNMutableNotificationContent()
+//                content.title = "New Alert from Quantam Workflow"
+//
+//                let Beacon_Title = "Click here to view more details"
+//
+//                if #available(iOS 13.0, *)
+//                {
+//                    content.body = Beacon_Title
+//                    content.sound = .default
+//                    content.userInfo = ["Beacon_UUID": Str_Beacon_UUID]
+//                }
+//                else
+//                {
+//                    // Fallback on earlier versions
+//                    content.body = Beacon_Title
+//                    content.sound = .default
+//                    content.userInfo = ["Beacon_UUID": Str_Beacon_UUID]
+//                }
+//
+//                let request = UNNotificationRequest(identifier: Str_Beacon_UUID, content: content, trigger: nil)
+//                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+//            }
+//        }
         
         delegate?.didEnterRegion?(beaconRegion)
         
 //        NotificationCenter.default.post(name: Finding_Deals_ViewController.Notification_Beacon_Detected, object: nil, userInfo:["Beacon_UUID":String(format: "%@", beaconRegion.proximityUUID as CVarArg) , "isImportant": true])
-
     }
 
     public func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion)
     {
+        let beaconRegion = region as! CLBeaconRegion
+        delegate?.didExitRegion?(beaconRegion)
     }
     
     public func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
