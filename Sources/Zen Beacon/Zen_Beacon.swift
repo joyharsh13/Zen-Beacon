@@ -246,6 +246,8 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                 }
                 
                 
+                
+                
                 startScanning(uuid: UUID(uuidString: "bf513d02-5ce1-411f-81f2-96d270f1cb2e")!, major: 1, minor: 1, identifier: "Estimote", name: "Estimote")
             }
         }
@@ -279,6 +281,9 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             Location_Manager.startUpdatingLocation()
 
         }
+        
+        print(uuidApple)
+
     }
     
     
@@ -493,7 +498,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             }
         }
         
-        delegate?.didExitRegion?(beaconRegion)
+        delegate?.didEnterRegion?(beaconRegion)
         
 //        NotificationCenter.default.post(name: Finding_Deals_ViewController.Notification_Beacon_Detected, object: nil, userInfo:["Beacon_UUID":String(format: "%@", beaconRegion.proximityUUID as CVarArg) , "isImportant": true])
 
