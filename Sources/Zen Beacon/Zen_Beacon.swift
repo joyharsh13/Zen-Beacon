@@ -139,7 +139,9 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
         
         if let topVC = self.getTopViewController()
         {
-            topVC.navigationController!.present(Alert, animated: true, completion: nil)
+            DispatchQueue.main.async {
+                topVC.navigationController!.present(Alert, animated: true, completion: nil)
+            }
 
         }
     }
