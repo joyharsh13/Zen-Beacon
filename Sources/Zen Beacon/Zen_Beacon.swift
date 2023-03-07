@@ -419,7 +419,20 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                                 let content = UNMutableNotificationContent()
                                 content.title = String(format: "%@", self.Dict_Beacon_Advertise_Data["name"] as! String)
                                 
-                                let Str_Description = String(format: "%@", self.Dict_Beacon_Advertise_Data["description"] as! String)
+                                
+                                
+                                var Str_Description = ""
+                                
+                                if self.CheckNullOrNill(value: self.Dict_Beacon_Advertise_Data["description"] as AnyObject)
+                                {
+                                    Str_Description = String(format: "%@", self.Dict_Beacon_Advertise_Data["description"] as! String)
+                                }
+                                else
+                                {
+                                    Str_Description = ""
+                                }
+                                
+                                
                                 
                                 if #available(iOS 13.0, *)
                                 {
@@ -458,6 +471,24 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             }
         });dataTask.resume()
         
+    }
+    
+    
+    
+    func CheckNullOrNill(value : AnyObject?) -> Bool
+    {
+        if value is NSNull
+        {
+            return false
+        }
+        else if value == nil
+        {
+            return false
+        }
+        else
+        {
+            return true
+        }
     }
     
     
