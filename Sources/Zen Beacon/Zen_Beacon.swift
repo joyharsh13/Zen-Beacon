@@ -541,6 +541,15 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
         }
     }
     
+    
+    
+    @available(iOS 13.0, *)
+    public func locationManager(_ manager: CLLocationManager, didRange beacons: [CLBeacon], satisfying beaconConstraint: CLBeaconIdentityConstraint)
+    {
+        print(beacons.count)
+    }
+
+    
     var is_immidiate = false
     
     public func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion)
