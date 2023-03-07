@@ -282,7 +282,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             let region = CLBeaconRegion(beaconIdentityConstraint: constraint, identifier: identifier)
             region.notifyOnEntry = true
             region.notifyOnExit = true
-            region.notifyEntryStateOnDisplay = true
+//            region.notifyEntryStateOnDisplay = true
             Location_Manager.startMonitoring(for: region)
             Location_Manager.startRangingBeacons(satisfying: constraint)
             Location_Manager.startUpdatingLocation()
@@ -293,7 +293,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             let beaconRegion = CLBeaconRegion(proximityUUID: uuidApple, identifier: identifier)
             beaconRegion.notifyOnEntry = true;
             beaconRegion.notifyOnExit = true;
-            beaconRegion.notifyEntryStateOnDisplay = true;
+//            beaconRegion.notifyEntryStateOnDisplay = true;
             Location_Manager.startMonitoring(for: beaconRegion)
             Location_Manager.startRangingBeacons(in: beaconRegion)
             Location_Manager.startUpdatingLocation()
