@@ -92,12 +92,12 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                             }
                             else
                             {
-                                self.Open_Alert(Title: "Alert...!!", Message: dataDict["responseMsg"] as! String)
+                                
                             }
                         }
                         else
                         {
-                            
+                            self.Open_Alert(Title: "Alert...!!", Message: dataDict["responseMsg"] as! String)
                         }
                     }
                     else
