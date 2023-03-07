@@ -407,11 +407,11 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
 
                         if dataDict["responseCode"] as! String == "200"
                         {
-                            let Dict_Beacon_Advertise_Data = dataDict["responseData"] as! NSDictionary
+                            self.Dict_Beacon_Advertise_Data = dataDict["responseData"] as! NSDictionary
                             
-                            print(Dict_Beacon_Advertise_Data["name"]!)
+                            print(self.Dict_Beacon_Advertise_Data["name"]!)
                             
-                            self.delegate?.didReceivedAdvertiseDetails?(AdvertiseData: Dict_Beacon_Advertise_Data )
+                            self.delegate?.didReceivedAdvertiseDetails?(AdvertiseData: self.Dict_Beacon_Advertise_Data )
 
                             
                             if self.is_enable_notification
