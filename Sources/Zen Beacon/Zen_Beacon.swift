@@ -581,8 +581,16 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             
             if let Beacon_UUID = userInfo["Beacon_UUID"] as? String
             {
+                let state: UIApplication.State = UIApplication.shared.applicationState
                 
-                self.Get_Beacon_Advertise_Data(Beacon_UUID: Beacon_UUID, is_from_Notification: true)
+                if state != .active
+                {
+                    self.Get_Beacon_Advertise_Data(Beacon_UUID: Beacon_UUID, is_from_Notification: true)
+                }
+                else
+                {
+                    self.Get_Beacon_Advertise_Data(Beacon_UUID: Beacon_UUID, is_from_Notification: false)
+                }
                 
 //                let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //
