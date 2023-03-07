@@ -86,6 +86,8 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                             self.Arr_Beacon = dataDict["responseData"] as! Array<AnyObject>
                             print(self.Arr_Beacon)
                             print(self.Arr_Beacon[0]["mac"] as! String)
+                            
+                            self.Ask_For_Location_Permission()
                         }
                         else
                         {
