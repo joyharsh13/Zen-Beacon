@@ -545,7 +545,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     
     public func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion)
     {
-//        print(beacons.count)
+        print(beacons.count)
         
         if beacons.count > 0
         {
