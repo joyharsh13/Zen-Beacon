@@ -265,6 +265,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             region.notifyEntryStateOnDisplay = true
             Location_Manager.startMonitoring(for: region)
             Location_Manager.startRangingBeacons(satisfying: constraint)
+            Location_Manager.startUpdatingLocation()
         }
         else
         {
@@ -275,6 +276,8 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             beaconRegion.notifyEntryStateOnDisplay = true;
             Location_Manager.startMonitoring(for: beaconRegion)
             Location_Manager.startRangingBeacons(in: beaconRegion)
+            Location_Manager.startUpdatingLocation()
+
         }
     }
     
