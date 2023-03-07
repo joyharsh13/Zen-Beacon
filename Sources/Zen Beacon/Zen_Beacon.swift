@@ -44,7 +44,6 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     open var is_enable_notification = false
     
     var Str_APP_ID =  ""
-   
     
     open func Start_Scanning(AppID:String)
     {
@@ -80,13 +79,9 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                         let dataDict : NSDictionary = json as! NSDictionary
                         
                         print(dataDict)
-                        
-
 
                         if dataDict["responseCode"] as! String == "200"
                         {
-                            
-                            
                             let tmp_arr = dataDict["responseData"] as! Array<NSDictionary>
                             
                             if self.Arr_Beacon != tmp_arr
@@ -97,12 +92,12 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                             }
                             else
                             {
-                                
+                                self.Open_Alert(Title: "Alert...!!", Message: dataDict["responseMsg"] as! String)
                             }
                         }
                         else
                         {
-//                            Toast(text: self.Dict_Beacon_Data["responseMessage"].stringValue).show()
+                            
                         }
                     }
                     else
@@ -120,6 +115,27 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                 
             }
         });dataTask.resume()
+    }
+    
+    
+    var window: UIWindow?
+
+    
+    
+    
+    func Open_Alert(Title:String, Message: String)
+    {
+        let Alert = UIAlertController(title: "Enable Loaction Service", message: "Enable Location To Find connected  Wi-Fi information", preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
+        {
+            UIAlertAction in
+            UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+
+        }
+
+        Alert.addAction(okAction)
+        self.window?.rootViewController?.present(Alert, animated: true, completion: nil)
     }
     
     
@@ -188,6 +204,11 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             }
         }
     }
+    
+    
+    
+    
+    
     
     var timer_Get_BeaconList = Timer()
 
