@@ -342,7 +342,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             
             
             
-            self.Get_Beacon_Advertise_Data(Beacon_UUID: String(format: "%@", beaconRegion.proximityUUID as CVarArg))
+            self.Get_Beacon_Advertise_Data(Beacon_UUID: String(format: "%@", beaconRegion.proximityUUID as CVarArg), is_from_Notification: false)
 
             
             if state != .active
@@ -388,7 +388,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     
     var Dict_Beacon_Advertise_Data = NSDictionary()
     
-    func Get_Beacon_Advertise_Data(Beacon_UUID:String)
+    func Get_Beacon_Advertise_Data(Beacon_UUID:String, is_from_Notification:Bool)
     {
         let headers = [
             "content-type": "application/json",
@@ -426,6 +426,12 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                             print(self.Dict_Beacon_Advertise_Data["name"]!)
                             
                             self.delegate?.didReceivedAdvertiseDetails?(AdvertiseData: self.Dict_Beacon_Advertise_Data )
+                            
+                            
+                            if is_from_Notification
+                            {
+                                self.delegate?.didClickedOnAdvertise?(AdvertiseData: self.Dict_Beacon_Advertise_Data )
+                            }
                             
                             let state: UIApplication.State = UIApplication.shared.applicationState
                             
@@ -516,7 +522,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
         let state: UIApplication.State = UIApplication.shared.applicationState
         
         
-        self.Get_Beacon_Advertise_Data(Beacon_UUID: Str_Beacon_UUID)
+        self.Get_Beacon_Advertise_Data(Beacon_UUID: Str_Beacon_UUID, is_from_Notification: false)
 
        
         if state != .active
@@ -579,8 +585,11 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             // your logic here!
             print(userInfo)
             
-//            if let Beacon_UUID = userInfo["Beacon_UUID"] as? String
-//            {
+            if let Beacon_UUID = userInfo["Beacon_UUID"] as? String
+            {
+                
+                self.Get_Beacon_Advertise_Data(Beacon_UUID: Beacon_UUID, is_from_Notification: true)
+                
 //                let storyboard = UIStoryboard(name: "Main", bundle: nil)
 //
 //                let Finding_Deals_View = storyboard.instantiateViewController(withIdentifier: "Finding_Deals_View") as! Finding_Deals_ViewController
@@ -601,7 +610,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
 //                    }
 //                    topVC.navigationController?.present(navController, animated: true, completion: nil)
 //                }
-//            }
+            }
         }
     }
     
