@@ -452,10 +452,13 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
         let Str_Beacon_UUID = String(format: "%@", beaconRegion.proximityUUID as CVarArg)
         
         let state: UIApplication.State = UIApplication.shared.applicationState
+        
+        
+        self.Get_Beacon_Advertise_Data(Beacon_UUID: Str_Beacon_UUID)
+
        
         if state != .active
         {
-            self.Get_Beacon_Advertise_Data(Beacon_UUID: Str_Beacon_UUID)
             
             
             if is_enable_notification
