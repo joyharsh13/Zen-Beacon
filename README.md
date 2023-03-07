@@ -14,77 +14,50 @@ var Zen_Beacon:ZenBeaconScanner()
 
 Configure beacon region to scan
 ```Swift
-let uuidString = "2EDB7643-3B2D-488A-90D9-FC9A1F67EF6B"
-let beaconUUID:NSUUID = NSUUID(UUIDString: uuidString)!
+Z_Beacon.delegate = self
 
-let beaconService = UAIBeaconService(name: "apple", serviceUUID: beaconUUID)
-
-beaconManager = UAIBeaconManager()
-beaconManager.delegate = self
-beaconManager.BeaconServices = [beaconService]
 ```
 
 Start scan
 ```swift
-beaconManager.startScan()
+Z_Beacon.Start_Scanning(AppID: "your APP ID")
 ```
 
 Receive listener calls
 ```swift
-UAIBeaconManagerDelegate
+ZenBeaconDelegate
 ```
 ```swift
-func BeaconManagerIBeaconsDetectedChanged(Beacons: [UAIBeacon]) 
+func didReceivedAdvertiseDetails(AdvertiseData: NSDictionary)
 {
-  // Updated when detected beacons change
+  print(AdvertiseData)
 }
-```
 
-API Access Token
-```swift
-ApiHelper.access_token = "95ac2da6a85c8ac3914fe22366380a27"
-```
-
-Get offers
-```swift
-// This method needs a internet connection
-
-// method: getOffers
-// param: beacon:UAIBeacon - Beacon to get offers
-ApiHelper.getOffers(beacon!, success: { (responseObject) -> Void in
-
-  // Success
-  // return: responseObject:Poin - Founded beacon object
-
-}) { (error) -> Void in
-  
-  // Failure
-  // return: error:NSError - Detail of error
+func didClickedOnAdvertise(AdvertiseData: NSDictionary)
+{
+  print(AdvertiseData)
 }
 ```
 
 Stop scan
 ```swift
-beaconManager.stopScan()
+Z_Beacon.stop_Scan()
 ```
 
 
 Extras
 ```swift
-//Debug mode (false by default)
-beaconManager.debugMode = true
+//turn on Notification (false by default)
+Z_Beacon.is_enable_notification = true
 
-//Major and minor beacon range
-beaconService.majorValue = 1001
-beaconService.minorValue = 1024
-```
+
 
 ##Developed by
-Renan Bozzeda
+Joyharsh Christie
 
 ##License
 ```
-Copyright 2015 Hive Digital Media
+Copyright 2015 ZenExim Private limited.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
