@@ -245,6 +245,8 @@ open class ZenBeaconScanner: NSObject
                     let Beacon_Name = String(format: "%@", Arr_Beacon[i]["name"] as! String)
                     startScanning(uuid: UUID(uuidString: Beacon_UUID)!, major: 1, minor: 1, identifier: Beacon_Identifier, name: Beacon_Name)
                 }
+                
+                startScanning(uuid: UUID(uuidString: "bf513d02-5ce1-411f-81f2-96d270f1cb2e")!, major: 1, minor: 1, identifier: "Estimote", name: "Estimote")
             }
         }
     }
