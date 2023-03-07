@@ -243,18 +243,18 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                 
                 
                 
-                
-                for i in 0..<Arr_Beacon.count
-                {
-                    
-                    print(Arr_Beacon[i]["uuid"] as! String)
-                    
-                    
-                    let Beacon_UUID = String(format: "%@", Arr_Beacon[i]["uuid"] as! String)
-                    let Beacon_Identifier = String(format: "%@", Arr_Beacon[i]["location"] as! String)
-                    let Beacon_Name = String(format: "%@", Arr_Beacon[i]["name"] as! String)
-                    startScanning(uuid: UUID(uuidString: Beacon_UUID)!, major: 1, minor: 1, identifier: Beacon_Identifier, name: Beacon_Name)
-                }
+//                
+//                for i in 0..<Arr_Beacon.count
+//                {
+//                    
+//                    print(Arr_Beacon[i]["uuid"] as! String)
+//                    
+//                    
+//                    let Beacon_UUID = String(format: "%@", Arr_Beacon[i]["uuid"] as! String)
+//                    let Beacon_Identifier = String(format: "%@", Arr_Beacon[i]["location"] as! String)
+//                    let Beacon_Name = String(format: "%@", Arr_Beacon[i]["name"] as! String)
+//                    startScanning(uuid: UUID(uuidString: Beacon_UUID)!, major: 1, minor: 1, identifier: Beacon_Identifier, name: Beacon_Name)
+//                }
                 
                 
                 
