@@ -409,6 +409,8 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                         {
                             let Dict_Beacon_Advertise_Data = dataDict["responseData"]
                             
+                            print(Dict_Beacon_Advertise_Data!)
+                            
                             self.delegate?.didReceivedAdvertiseDetails?(AdvertiseData: Dict_Beacon_Advertise_Data as! NSDictionary)
 
                             
