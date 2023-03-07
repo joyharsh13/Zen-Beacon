@@ -788,7 +788,7 @@ extension ZenBeaconScanner: CLLocationManagerDelegate,UNUserNotificationCenterDe
 
     public func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion)
     {
-//        print(beacons)
+        print(beacons)
 
 //        Count = Count + 1
 
