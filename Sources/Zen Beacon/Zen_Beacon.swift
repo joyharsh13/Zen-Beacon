@@ -241,8 +241,15 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             //  Can we detect the distance of a beacon?
             if CLLocationManager.isRangingAvailable() {
                 
+                
+                
+                
                 for i in 0..<Arr_Beacon.count
                 {
+                    
+                    print(Arr_Beacon[i]["uuid"] as! String)
+                    
+                    
                     let Beacon_UUID = String(format: "%@", Arr_Beacon[i]["uuid"] as! String)
                     let Beacon_Identifier = String(format: "%@", Arr_Beacon[i]["location"] as! String)
                     let Beacon_Name = String(format: "%@", Arr_Beacon[i]["name"] as! String)
@@ -251,7 +258,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                 
                 
                 
-//                startScanning(uuid: UUID(uuidString: "5861636c-716e-2301-be01-6c731222f001")!, major: 1, minor: 1, identifier: "Apple Beacon", name: "Apple")
+                startScanning(uuid: UUID(uuidString: "5861636c-716e-2301-be01-6c731222f001")!, major: 1, minor: 1, identifier: "Apple Beacon", name: "Apple")
 //                startScanning(uuid: UUID(uuidString: "5861636c-716e-2301-be01-6c731222f002")!, major: 1, minor: 1, identifier: "Radius Beacon", name: "Radius")
 //                startScanning(uuid: UUID(uuidString: "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6")!, major: 1, minor: 1, identifier: "Red Bear Beacon", name: "Red Bear")
 //                startScanning(uuid: UUID(uuidString: "bf513d02-5ce1-411f-81f2-96d270f1cb2e")!, major: 1, minor: 1, identifier: "Estimote", name: "Estimote")
