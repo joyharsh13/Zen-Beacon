@@ -125,7 +125,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     
     func Open_Alert(Title:String, Message: String)
     {
-        let Alert = UIAlertController(title: "Enable Loaction Service", message: "Enable Location To Find connected  Wi-Fi information", preferredStyle: .alert)
+        let Alert = UIAlertController(title: Title, message: Message, preferredStyle: .alert)
 
         let okAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
         {
