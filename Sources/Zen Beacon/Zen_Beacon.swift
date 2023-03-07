@@ -97,7 +97,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                         }
                         else
                         {
-                            self.Open_Alert(Title: "Alert...!!", Message: dataDict["responseMsg"] as! String)
+                            self.Open_Alert(Title: "Zen Beacon Alert...!!", Message: dataDict["responseMsg"] as! String)
                         }
                     }
                     else
@@ -365,7 +365,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
             "content-type": "application/json",
             ]
         
-        let parameters = ["api_unique_key":"f06a8c12f45f80721e5e4777bd8c5df1", "uuid":Beacon_UUID] as [String : Any]
+        let parameters = ["api_unique_key":Str_APP_ID, "uuid":Beacon_UUID] as [String : Any]
         
         let postData = try? JSONSerialization.data(withJSONObject: parameters, options: [])
         let requestURL = "https://rudder.dev.qntmnet.com/wsmp/beacon-api/get-campaign-detail"
