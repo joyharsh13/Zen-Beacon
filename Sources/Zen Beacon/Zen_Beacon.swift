@@ -230,9 +230,9 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
 
     func Start_ScanningFor_BEACON()
     {
-//        timer_Get_BeaconList = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
-//            self.Get_Beacon_List(App_ID: self.Str_APP_ID)
-//        })
+        timer_Get_BeaconList = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
+            self.Get_Beacon_List(App_ID: self.Str_APP_ID)
+        })
         
         Location_Manager.delegate = self
         Location_Manager.activityType = .automotiveNavigation
@@ -261,7 +261,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                 }
                 
                 
-//                
+//
 //                startScanning(uuid: UUID(uuidString: "5861636c-716e-2301-be01-6c731222f001")!, major: 1, minor: 1, identifier: "Apple Beacon", name: "Apple")
 //                startScanning(uuid: UUID(uuidString: "5861636c-716e-2301-be01-6c731222f002")!, major: 1, minor: 1, identifier: "Radius Beacon", name: "Radius")
 //                startScanning(uuid: UUID(uuidString: "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6")!, major: 1, minor: 1, identifier: "Red Bear Beacon", name: "Red Bear")
