@@ -55,7 +55,7 @@ open class ZenBeaconScanner: NSObject
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
 
         // create post request
-        let url = URL(string: "https://rudder.dev.qntmnet.com/api/v1/wsmp/beacon-api/get-beacon-list")!
+        let url = URL(string: "https://rudder.dev.qntmnet.com/wsmp/beacon-api/get-beacon-list")!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
