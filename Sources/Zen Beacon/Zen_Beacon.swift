@@ -226,9 +226,9 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
 
     func Start_ScanningFor_BEACON()
     {
-        timer_Get_BeaconList = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
-            self.Get_Beacon_List(App_ID: self.Str_APP_ID)
-        })
+//        timer_Get_BeaconList = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
+//            self.Get_Beacon_List(App_ID: self.Str_APP_ID)
+//        })
         
         Location_Manager.delegate = self
         Location_Manager.activityType = .automotiveNavigation
