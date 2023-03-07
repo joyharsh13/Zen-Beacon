@@ -22,28 +22,65 @@ import MapKit
     /// Will be called when the CLLocationManager reports the "did exit region" event.
     @objc optional func didExitRegion(_ region: CLRegion)
     
-    
-    
     @objc optional func didClickedOnAdvertise(AdvertiseData: NSDictionary)
-
 }
 
 
 open class ZenBeaconScanner: NSObject
 {
-    
-    
-    
     open var delegate: ZenBeaconDelegate?
     fileprivate let regionIdentifier = "ZenBeaconScanner"
-    
-    
     
     // CLLocationManager that will listen and react to Beacons.
     var Location_Manager: CLLocationManager = CLLocationManager()
     var CentralManager:CBCentralManager!
     
+    
+    
+    
+    
+
+    
     open func Start_Scanning()
+    {
+        self.Get_Beacon_List()
+    }
+    
+    
+    
+    open func Get_Beacon_List()
+    {
+        let json: [String: Any] = ["api_unique_key": "f06a8c12f45f80721e5e4777bd8c5df1"]
+
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+
+        // create post request
+        let url = URL(string: "https://rudder.dev.qntmnet.com/api/v1/wsmp/beacon-api/get-beacon-list")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        // insert json data to the request
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                print(responseJSON)
+                
+                
+                self.Ask_For_Location_Permission()
+            }
+        }
+
+        task.resume()
+    }
+    
+    
+    func Ask_For_Location_Permission()
     {
         let center = UNUserNotificationCenter.current()
         center.delegate = self
@@ -103,11 +140,9 @@ open class ZenBeaconScanner: NSObject
     
     func Start_ScanningFor_BEACON()
     {
-        
         var Str_Beacon_UUID = "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
         let Str_Beacon_Identifier = "ZenBeacon"
 
-        
         let uuid = UUID(uuidString: Str_Beacon_UUID)!
         
         
@@ -152,10 +187,6 @@ open class ZenBeaconScanner: NSObject
             Location_Manager.startRangingBeacons(in: beaconRegion)
         }
         
-        
-        
-        
-        
 //
 //        Str_Beacon_UUID = "bf513d02-5ce1-411f-81f2-96d270f1cb2e"
 //
@@ -181,6 +212,10 @@ open class ZenBeaconScanner: NSObject
 //            Location_Manager.startMonitoring(for: beaconRegion)
 //            Location_Manager.startRangingBeacons(in: beaconRegion)
 //        }
+        
+        
+        
+        
 
         
     }
