@@ -251,11 +251,11 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                 
                 
                 
-                startScanning(uuid: UUID(uuidString: "e2c56db5-dffb-48d2-b060-d0f5a71096e1")!, major: 111, minor: 22, identifier: "Apple Beacon", name: "Apple")
-                startScanning(uuid: UUID(uuidString: "e2c56db5-dffb-48d2-b060-d0f5a71096e2")!, major: 333, minor: 44, identifier: "Radius Beacon", name: "Radius")
+                startScanning(uuid: UUID(uuidString: "5861636c-716e-2301-be01-6c731222f001")!, major: 1, minor: 1, identifier: "Apple Beacon", name: "Apple")
+                startScanning(uuid: UUID(uuidString: "5861636c-716e-2301-be01-6c731222f002")!, major: 1, minor: 1, identifier: "Radius Beacon", name: "Radius")
                 startScanning(uuid: UUID(uuidString: "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6")!, major: 1, minor: 1, identifier: "Red Bear Beacon", name: "Red Bear")
                 startScanning(uuid: UUID(uuidString: "bf513d02-5ce1-411f-81f2-96d270f1cb2e")!, major: 1, minor: 1, identifier: "Estimote", name: "Estimote")
-                startScanning(uuid: UUID(uuidString: "bf513d02-5ce1-411f-81f2-96d270f1cb2e")!, major: 1, minor: 1, identifier: "Estimote", name: "Estimote")
+//                startScanning(uuid: UUID(uuidString: "bf513d02-5ce1-411f-81f2-96d270f1cb2e")!, major: 1, minor: 1, identifier: "Estimote", name: "Estimote")
             }
         }
     }
