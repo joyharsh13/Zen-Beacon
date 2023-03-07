@@ -42,11 +42,14 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     var Arr_Beacon: Array<NSDictionary> = []
     
     open var is_enable_notification = false
+    
+    var Str_APP_ID =  ""
    
     
     open func Start_Scanning(AppID:String)
     {
-        self.Get_Beacon_List(App_ID:AppID)
+        Str_APP_ID = AppID
+        self.Get_Beacon_List(App_ID:Str_APP_ID)
     }
     
     open func Get_Beacon_List(App_ID:String)
@@ -191,7 +194,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     func Start_ScanningFor_BEACON()
     {
         timer_Get_BeaconList = Timer.scheduledTimer(withTimeInterval: 10, repeats: true, block: { _ in
-            self.Get_Beacon_List()
+            self.Get_Beacon_List(App_ID: self.Str_APP_ID)
         })
         
         Location_Manager.delegate = self
