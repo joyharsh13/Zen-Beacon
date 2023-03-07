@@ -17,10 +17,10 @@ import MapKit
 //    @objc optional func receivedMatchingBeacons(_ monitor: ZenBeaconScanner, beacons: [CLBeacon])
     
     /// Will be called when the CLLocationManager reports the "did enter region" event.
-//    @objc optional func didEnterRegion(_ region: CLRegion)
+    @objc optional func didEnterRegion(_ region: CLRegion)
     
     /// Will be called when the CLLocationManager reports the "did exit region" event.
-//    @objc optional func didExitRegion(_ region: CLRegion)
+    @objc optional func didExitRegion(_ region: CLRegion)
     
     @objc optional func didClickedOnAdvertise(AdvertiseData: NSDictionary)
     
@@ -492,6 +492,8 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                 UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
             }
         }
+        
+        delegate?.didExitRegion?(beaconRegion)
         
 //        NotificationCenter.default.post(name: Finding_Deals_ViewController.Notification_Beacon_Detected, object: nil, userInfo:["Beacon_UUID":String(format: "%@", beaconRegion.proximityUUID as CVarArg) , "isImportant": true])
 
