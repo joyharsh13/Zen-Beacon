@@ -417,7 +417,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                             if self.is_enable_notification
                             {
                                 let content = UNMutableNotificationContent()
-                                content.title = String(format: "%@", self.Dict_Beacon_Advertise_Data["name"] as! CVarArg)
+                                content.title = String(format: "%@", self.Dict_Beacon_Advertise_Data["name"] as! String)
                                 
                                 let Str_Description = String(format: "%@", self.Dict_Beacon_Advertise_Data["description"] as! String)
                                 
