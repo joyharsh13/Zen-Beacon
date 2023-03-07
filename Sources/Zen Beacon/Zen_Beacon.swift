@@ -135,7 +135,13 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
         }
 
         Alert.addAction(okAction)
-        self.window?.rootViewController?.present(Alert, animated: true, completion: nil)
+        
+        
+        if let topVC = self.getTopViewController()
+        {
+            topVC.present(Alert, animated: true, completion: nil)
+
+        }
     }
     
     
@@ -583,6 +589,25 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     func applicationWillTerminate(_ application: UIApplication)
     {
 //        self.Start_ScanningFor_BEACON_Deals()
+    }
+    
+    
+    
+    
+    
+    
+    func getTopViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+
+        if let nav = base as? UINavigationController {
+            return getTopViewController(base: nav.visibleViewController)
+
+        } else if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
+            return getTopViewController(base: selected)
+
+        } else if let presented = base?.presentedViewController {
+            return getTopViewController(base: presented)
+        }
+        return base
     }
 
     
