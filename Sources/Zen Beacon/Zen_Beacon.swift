@@ -39,7 +39,7 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
     var Location_Manager: CLLocationManager = CLLocationManager()
     var CentralManager:CBCentralManager!
     
-    var Arr_Beacon: Array<AnyObject> = []
+    var Arr_Beacon: Array<NSDictionary> = []
     
     open var is_enable_notification = false
    
@@ -78,16 +78,24 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                         
                         print(dataDict)
                         
-                        self.Arr_Beacon = []
 
 
                         if dataDict["responseCode"] as! String == "200"
                         {
-                            self.Arr_Beacon = dataDict["responseData"] as! Array<AnyObject>
-                            print(self.Arr_Beacon)
-                            print(self.Arr_Beacon[0]["mac"] as! String)
                             
-                            self.Ask_For_Location_Permission()
+                            
+                            let tmp_arr = dataDict["responseData"] as! Array<NSDictionary>
+                            
+                            if self.Arr_Beacon != tmp_arr
+                            {
+                                self.Arr_Beacon = []
+                                self.Arr_Beacon = dataDict["responseData"] as! Array<NSDictionary>
+                                self.Ask_For_Location_Permission()
+                            }
+                            else
+                            {
+                                
+                            }
                         }
                         else
                         {
