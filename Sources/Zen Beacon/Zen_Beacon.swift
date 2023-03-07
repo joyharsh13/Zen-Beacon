@@ -426,44 +426,44 @@ open class ZenBeaconScanner: NSObject, CLLocationManagerDelegate,UNUserNotificat
                             print(self.Dict_Beacon_Advertise_Data["name"]!)
                             
                             self.delegate?.didReceivedAdvertiseDetails?(AdvertiseData: self.Dict_Beacon_Advertise_Data )
-
                             
-                            if self.is_enable_notification
+                            let state: UIApplication.State = UIApplication.shared.applicationState
+                            
+                            if state != .active
                             {
-                                let content = UNMutableNotificationContent()
-                                content.title = String(format: "%@", self.Dict_Beacon_Advertise_Data["name"] as! String)
-                                
-                                
-                                
-                                var Str_Description = ""
-                                
-                                if self.CheckNullOrNill(value: self.Dict_Beacon_Advertise_Data["description"] as AnyObject)
+                                if self.is_enable_notification
                                 {
-                                    Str_Description = String(format: "%@", self.Dict_Beacon_Advertise_Data["description"] as! String)
+                                    let content = UNMutableNotificationContent()
+                                    content.title = String(format: "%@", self.Dict_Beacon_Advertise_Data["name"] as! String)
+                                    
+                                    var Str_Description = ""
+                                    
+                                    if self.CheckNullOrNill(value: self.Dict_Beacon_Advertise_Data["description"] as AnyObject)
+                                    {
+                                        Str_Description = String(format: "%@", self.Dict_Beacon_Advertise_Data["description"] as! String)
+                                    }
+                                    else
+                                    {
+                                        Str_Description = ""
+                                    }
+                                    
+                                    if #available(iOS 13.0, *)
+                                    {
+                                        content.body = Str_Description
+                                        content.sound = .default
+                                        content.userInfo = ["Beacon_UUID": Beacon_UUID]
+                                    }
+                                    else
+                                    {
+                                        // Fallback on earlier versions
+                                        content.body = Str_Description
+                                        content.sound = .default
+                                        content.userInfo = ["Beacon_UUID": Beacon_UUID]
+                                    }
+                                    
+                                    let request = UNNotificationRequest(identifier: Beacon_UUID, content: content, trigger: nil)
+                                    UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                                 }
-                                else
-                                {
-                                    Str_Description = ""
-                                }
-                                
-                                
-                                
-                                if #available(iOS 13.0, *)
-                                {
-                                    content.body = Str_Description
-                                    content.sound = .default
-                                    content.userInfo = ["Beacon_UUID": Beacon_UUID]
-                                }
-                                else
-                                {
-                                    // Fallback on earlier versions
-                                    content.body = Str_Description
-                                    content.sound = .default
-                                    content.userInfo = ["Beacon_UUID": Beacon_UUID]
-                                }
-                                
-                                let request = UNNotificationRequest(identifier: Beacon_UUID, content: content, trigger: nil)
-                                UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                             }
                         }
                         else
