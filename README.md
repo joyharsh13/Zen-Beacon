@@ -23,7 +23,7 @@ import Zen_Beacon
 
 
 ```Swift
-var Zen_Beacon:ZenBeaconScanner()
+var Z_Beacon:ZenBeaconScanner()
 ```
 
 Configure ZenBeaconDelegate
