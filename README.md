@@ -62,6 +62,7 @@ Extras
 ```swift
 //turn on Notification (false by default)
 Z_Beacon.is_enable_notification = true
+```
 
 
 
