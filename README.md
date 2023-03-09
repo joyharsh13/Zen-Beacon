@@ -69,7 +69,7 @@ Note
 ```
 -- if you want to run this SDK in background mode , you have to call this all from 'AppDelegate'
 -- you need to add NSLocationAlwaysUsageDescription in info.plist to run app in background as-well.
--- you need to add NSLocationAlwaysUsageDescription, NSLocationUsageDescription, NSLocationWhenInUseUsageDescription, NSLocationAlwaysAndWhenInUseUsageDescription in info.plist.
+-- you need to add NSLocationUsageDescription, NSLocationWhenInUseUsageDescription, NSLocationAlwaysAndWhenInUseUsageDescription in info.plist.
 -- you need to add NSBluetoothAlwaysUsageDescription in info.plist to run app in background as-well.
 ```
 
