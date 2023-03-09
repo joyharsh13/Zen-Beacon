@@ -62,6 +62,8 @@ Extras
 ```swift
 //turn on Notification (false by default)
 Z_Beacon.is_enable_notification = true
+
+//Note: if you want to run this SDK in background mode , you have to call this all from AppDelegate..!!
 ```
 
 
