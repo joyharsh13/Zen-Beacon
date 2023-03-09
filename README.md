@@ -5,6 +5,22 @@ SDK created to scan Beacons
 Retrieve Zen Beacon
 
 
+
+## Requirements
+
+- iOS 12.0+
+- Xcode 11
+
+
+
+## Integration
+
+#### Swift Package Manager
+
+When using Xcode 11 or later, you can install `Zen Beacon` by going to your Project settings > `Swift Packages` and add the repository by providing the GitHub URL. Alternatively, you can go to `File` > `Swift Packages` > `Add Package Dependencies...`
+
+
+
 import Zen_Beacon
 
 
