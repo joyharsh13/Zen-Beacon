@@ -26,7 +26,7 @@ import Zen_Beacon
 var Zen_Beacon:ZenBeaconScanner()
 ```
 
-Configure beacon region to scan
+Configure ZenBeaconDelegate
 ```Swift
 Z_Beacon.delegate = self
 
